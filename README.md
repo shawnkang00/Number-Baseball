@@ -62,4 +62,3 @@ Similarly, there is a game in Korea that is similar to Wordle which was very pop
 
 ### Program codes in multiple files:
 - Main file, file for functions used in the game, file for the setting of the game
-
