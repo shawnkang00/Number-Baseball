@@ -179,7 +179,6 @@ void playGame() {
 	History *head = NULL, *tail = NULL;
 	string difficulty = setDifficulty();
 	string answer = generateNumber(difficulty);
-	cout << answer << endl;
 	game.answer = answer;
 	game.difficulty = difficulty;
 	string guess, feedback;
