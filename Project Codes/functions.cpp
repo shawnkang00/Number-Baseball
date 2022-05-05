@@ -5,22 +5,9 @@
 
 using namespace std;
 
-// Game History access 할때 사용 할 수도 있는 것들
-// struct History{
-// 	string input;
-// 	string feedback;
-// };
-
-// struct Game{
-// 	bool difficulty;
-// 	vector<History> History;
-// 	bool win;
-// };
-
-// vector<Game> games;
-
-string setDifficulty() {
-	string input, difficulty;
+bool setDifficulty() {
+	string input;
+	bool difficulty = false;
 
 	cout << "Enter 1 for Normal Mode - Guessing a 3 digit number" << endl;
 	cout << "Enter 2 for Hard Mode - Guessing a 4 digit number" << endl;
@@ -28,10 +15,10 @@ string setDifficulty() {
 
 	while(getline(cin, input)){
 		if(input == "1"){
-			difficulty = "Normal";
+			difficulty = false;
 			break;
 		}else if(input == "2"){
-			difficulty = "Hard";
+			difficulty = true;
 			break;
 		}else{
 			cout << "Invalid input. Please choose difficulty again." << endl;
@@ -41,24 +28,25 @@ string setDifficulty() {
 	return difficulty;
 }
 
-bool isNumber(string n) {
+bool isNumber(string n)
+{
 	return n.find_first_not_of("0123456789") == string::npos;
 }
 
-void inputGuess(string &input, string difficulty)
+void inputGuess(string &input, bool difficulty)
 {
 	cout << "Guess: ";
 	while(getline(cin, input)){
-		if(difficulty == "Normal") {
-			if(input.length() != 3 || !isNumber(input)){
-				cout << "Invalid guess. Please input a 3 digit number.\nGuess: ";
+		if(difficulty) {
+			if(input.length() != 4 || !isNumber(input)){
+				cout << "Invalid guess. Please input a 4 digit number.\nGuess: ";
 			}else{
 				return;
 			}
 		}
 		else {
-			if(input.length() != 4 || !isNumber(input)){
-				cout << "Invalid guess. Please input a 4 digit number.\nGuess: ";
+			if(input.length() != 3 || !isNumber(input)){
+				cout << "Invalid guess. Please input a 3 digit number.\nGuess: ";
 			}
 			else {
 				return;
@@ -67,7 +55,7 @@ void inputGuess(string &input, string difficulty)
 	}
 }
 
-string generateAnswer(string difficulty) {
+string generateAnswer(int difficulty) {
     int temp = 0;
     string answer;
 
@@ -116,31 +104,31 @@ string giveFeedback(string guess, string answer) {
 }
 
 void playGame() {
-	string difficulty = setDifficulty();
+	bool difficulty = setDifficulty();
 	string answer = generateAnswer(difficulty);
 
 	string guess, feedback;
 	int tries, attempt;
-	if(difficulty == "Normal"){
-		attempt = 6;
-	}else{
+	if(difficulty){
 		attempt = 8;
+	}else{
+		attempt = 6;
 	}
 	while(attempt != 0){
 		inputGuess(guess, difficulty);
 		feedback = giveFeedback(guess, answer);
-		if(difficulty == "Normal"){
+		if(difficulty){
 			cout << feedback << endl;
-			cout << feedback << endl;
-			if(feedback == "3 Strike"){
-				cout << "Your guess is correct! You guessed the answer in " << 7 - attempt << " tries" << endl;
+			if(feedback == "4 Strike"){
+				cout << "Your guess is correct! You guessed the answer in " << 9 - attempt << " tries" << endl;
 			}else{
 				cout << "Your guess is wrong! You still have " << attempt-1 << " tries left" << endl;
 			}
 		}
-		else {
-			if(feedback == "4 Strike"){
-				cout << "Your guess is correct! You guessed the answer in " << 9 - attempt << " tries" << endl;
+		else{
+			cout << feedback << endl;
+			if(feedback == "3 Strike"){
+				cout << "Your guess is correct! You guessed the answer in " << 7 - attempt << " tries" << endl;
 			}else{
 				cout << "Your guess is wrong! You still have " << attempt-1 << " tries left" << endl;
 			}
@@ -149,25 +137,4 @@ void playGame() {
 	}
 	cout << "You ran out of tries, better luck next time!" << endl;
 	return;
-}
-
-int main() {		
-	srand(time(NULL));
-	playGame();
-	string input;
-	cout << "Would you like to play again? (Y/N)" << endl;
-	while(getline(cin, input)){
-		if(input == "Y"){
-			playGame();
-		}
-		else if(input == "N"){
-			cout << "Thank you for playing!" << endl;
-			break;
-		}
-		else{
-			cout << "Invalid input. Please input again." << endl;
-		}
-	}
-
-	return 0;
 }
