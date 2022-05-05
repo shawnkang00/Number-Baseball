@@ -126,20 +126,20 @@ void inputGuess(string &input, string difficulty)
 
 string generateNumber(string difficulty)
 {
-	string num, numbers = "0123456789";
-	num += numbers[rand()%10];
-    if(difficulty == "Hard"){
-		for(int i = 0; i < 3; i++){
-			num += numbers[rand()%(10 - i)];
-            numbers.erase(remove(numbers.begin(), numbers.end(), num[i]), numbers.end());
+	string answer, numbers = "0123456789";
+	answer += numbers[rand()%10];
+    if(difficulty == "Normal"){
+		for(int i = 0; i < 2; i++){
+			answer += numbers[rand()%(10 - i)];
+            numbers.erase(remove(numbers.begin(), numbers.end(), answer[i]), numbers.end());
 		}
 	}else{
-		for(int i = 0; i < 2; i++){
-			num += numbers[rand()%(10 - i)];
-            numbers.erase(remove(numbers.begin(), numbers.end(), num[i]), numbers.end());
+		for(int i = 0; i < 3; i++){
+			answer += numbers[rand()%(10 - i)];
+            numbers.erase(remove(numbers.begin(), numbers.end(), answer[i]), numbers.end());
 		}
 	}
-	return num;
+	return answer;
 }
 
 string giveFeedback(string guess, string answer) {
@@ -180,8 +180,7 @@ string giveFeedback(string guess, string answer) {
 	return feedback;
 }
 
-void playGame()
-{
+void playGame() {
 	Game game;
 	History *head = NULL, *tail = NULL;
 	string difficulty = setDifficulty();
@@ -233,8 +232,7 @@ void playGame()
 	return;
 }
 
-int main()
-{		
+int main() {		
 	srand(time(NULL));
 	playGame();
 	string input;
