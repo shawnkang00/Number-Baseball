@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdlib> 
 #include <list>
+#include <time.h>
 
 using namespace std;
 
@@ -19,8 +20,7 @@ using namespace std;
 
 // vector<Game> games;
 
-bool setDifficulty()
-{
+bool setDifficulty() {
 	string input;
 	bool difficulty = false;
 	cout << "Please choose difficulty" << endl;
@@ -68,10 +68,60 @@ void inputGuess(string &input, bool difficulty)
 	}
 }
 
+/* string generateAnswer(int difficulty) {
+    int temp = 0;
+    string answer;
+
+    for (int i = 1; i <= 4; i++) {
+        
+    }
+    
+} */
+
+string giveFeedback(string guess, string answer) {
+    int strike = 0, ball = 0;
+	string feedback;
+
+    for (int i = 0; i < answer.length(); i++) {
+        if (guess[i] == answer[i]) {
+            strike += 1;
+        }
+        else {
+            for (int j = 0; j < answer.length(); j++) {
+                if (guess[i] == answer[j]) {
+                    ball += 1;
+                }
+            }
+        }
+    }
+
+    if (strike == 0 && ball == 0) {
+        feedback += "It's an OUT";
+    }
+    else if (ball == 0) {
+        feedback += to_string(strike);
+		feedback += " Strike";
+    }
+	else if (strike == 0) {
+        feedback += to_string(ball);
+		feedback += " Ball";
+    }
+    else {
+        feedback += to_string(strike);
+		feedback += " Strike ";
+		feedback += to_string(ball);
+		feedback += " Ball";
+    }
+
+	return feedback;
+}
+
 void playGame()
 {
 	bool difficulty = setDifficulty();
-	//char answer = generateNumber(difficulty);
+	// string answer = generateAnswer(difficulty);
+	string answer = "1234";
+
 	string guess, feedback;
 	int tries, attempt;
 	if(difficulty){
@@ -81,18 +131,21 @@ void playGame()
 	}
 	while(attempt != 0){
 		inputGuess(guess, difficulty);
-		//feedback = generateFeedback(input, answer)
+		feedback = giveFeedback(guess, answer);
 		if(difficulty){
+			cout << feedback << endl;
 			if(feedback == "4 Strike"){
 				cout << "Your guess is correct! You guessed the answer in " << 8 - attempt << " tries" << endl;
 			}else{
-				continue;
+				cout << "Your guess is wrong! You still have " << attempt << " tries left" << endl;
 			}
-		}else{
+		}
+		else{
+			cout << feedback << endl;
 			if(feedback == "3 Strike"){
 				cout << "Your guess is correct! You guessed the answer in " << 6 - attempt << " tries" << endl;
 			}else{
-				continue;
+				cout << "Your guess is wrong! You still have " << attempt << " tries left" << endl;
 			}
 		}
 		attempt--;
@@ -106,11 +159,11 @@ int main()
 	srand(time(NULL));
 	playGame();
 	string input;
-	cout << "Would you like to play again? (y/n)" << endl;
+	cout << "Would you like to play again? (Y/N)" << endl;
 	while(getline(cin, input)){
-		if(input == "y"){
+		if(input == "Y"){
 			playGame();
-		}else if(input == "n"){
+		}else if(input == "N"){
 			cout << "Thank you for playing!" << endl;
 			break;
 		}else{
