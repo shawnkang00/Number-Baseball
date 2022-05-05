@@ -124,29 +124,19 @@ void inputGuess(string &input, string difficulty)
 	}
 }
 
-/* string generateAnswer(int difficulty) {
-    int temp = 0;
-    string answer;
-
-    for (int i = 1; i <= 4; i++) {
-        
-    }
-    
-} */
-
 string generateNumber(string difficulty)
 {
 	string num, numbers = "0123456789";
 	num += numbers[rand()%10];
     if(difficulty == "Hard"){
 		for(int i = 0; i < 3; i++){
+			num += numbers[rand()%(10 - i)];
             numbers.erase(remove(numbers.begin(), numbers.end(), num[i]), numbers.end());
-			num += numbers[rand()%(9 - i)];
 		}
 	}else{
 		for(int i = 0; i < 2; i++){
+			num += numbers[rand()%(10 - i)];
             numbers.erase(remove(numbers.begin(), numbers.end(), num[i]), numbers.end());
-			num += numbers[rand()%(9 - i)];
 		}
 	}
 	return num;
