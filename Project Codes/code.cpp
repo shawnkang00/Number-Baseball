@@ -6,13 +6,13 @@
 
 using namespace std;
 
-struct History {
+struct History{
 	string input;
 	string feedback;
 	History *next;
 };
 
-struct Game {
+struct Game{
 	string difficulty;
 	string answer;
 	History *history;
@@ -21,7 +21,8 @@ struct Game {
 
 vector<Game> games;
 
-void tail_insert(History *&head, History *&tail, string input, string feedback) {
+void tail_insert(History *&head, History *&tail, string input, string feedback) // function to build linked list forward
+{
 	History *newHistory = new History;
 	newHistory->input = input;
 	newHistory->feedback = feedback;
@@ -34,7 +35,13 @@ void tail_insert(History *&head, History *&tail, string input, string feedback) 
 	}
 }
 
-void printHistory(History *head, string difficulty) {
+bool isNumber(string n) // function to check if string is a number
+{
+	return n.find_first_not_of("0123456789") == string::npos;
+}
+
+void printHistory(History *head, string difficulty)	//function to print attempt history of particular game
+{
 	History *temp;
 	int count = 1;
 	temp = head;
@@ -54,7 +61,8 @@ void printHistory(History *head, string difficulty) {
 	return;
 }
 
-void print_game_history() {
+void print_game_history() //function to print history of games
+{
 	int size = games.size(), idx;
 	string n;
 	cout << "No.        Difficulty       Result" << endl;
@@ -66,12 +74,21 @@ void print_game_history() {
 		}
 	}
 	cout << "Input the number of the game you wish to view. (1~" << games.size() << ")" << endl;
-	getline(cin, n);
-	idx = stoi(n);
-	cout << "Game " << idx << " - Answer: " << games[idx-1].answer << endl;
-	cout << "Attempt No.  Guess      Feedback" << endl;
-	printHistory(games[idx-1].history, games[idx-1].difficulty);
-	return;
+	while(getline(cin, n)){
+		if(isNumber(n)){
+			idx = stoi(n);
+			if(idx <= games.size() && 0 < idx){
+				cout << "Game " << idx << " - Answer: " << games[idx-1].answer << endl;
+				cout << "Attempt No.  Guess      Feedback" << endl;
+				printHistory(games[idx-1].history, games[idx-1].difficulty);
+				return;
+			}else{
+				cout << "Invalid input. Please input again." << endl;
+			}
+		}else{
+			cout << "Invalid input. Please input again." << endl;
+		}
+	}
 }
 
 string setDifficulty() {
@@ -94,11 +111,8 @@ string setDifficulty() {
 	return difficulty;
 }
 
-bool isNumber(string n) {
-	return n.find_first_not_of("0123456789") == string::npos;
-}
-
-void inputGuess(string &input, string difficulty) {
+void inputGuess(string &input, string difficulty)
+{
 	cout << "Guess: ";
 	while(getline(cin, input)){
 		if(difficulty == "Hard") {
@@ -119,21 +133,21 @@ void inputGuess(string &input, string difficulty) {
 	}
 }
 
-string generateNumber(string difficulty) {
-	string answer, numbers = "0123456789";
-	answer += numbers[rand()%10];
-    if(difficulty == "Normal"){
-		for(int i = 0; i < 2; i++){
-			answer += numbers[rand()%(10 - i)];
-            numbers.erase(remove(numbers.begin(), numbers.end(), answer[i]), numbers.end());
+string generateNumber(string difficulty)
+{
+	string num, numbers = "0123456789";
+    if(difficulty == "Hard"){
+		for(int i = 0; i < 4; i++){
+			num += numbers[rand()%(10 - i)];
+			numbers.erase(remove(numbers.begin(), numbers.end(), num[i]), numbers.end());
 		}
 	}else{
 		for(int i = 0; i < 3; i++){
-			answer += numbers[rand()%(10 - i)];
-            numbers.erase(remove(numbers.begin(), numbers.end(), answer[i]), numbers.end());
+			num += numbers[rand()%(10 - i)];
+			numbers.erase(remove(numbers.begin(), numbers.end(), num[i]), numbers.end());
 		}
 	}
-	return answer;
+	return num;
 }
 
 string giveFeedback(string guess, string answer) {
@@ -174,7 +188,8 @@ string giveFeedback(string guess, string answer) {
 	return feedback;
 }
 
-void playGame() {
+void playGame()
+{
 	Game game;
 	History *head = NULL, *tail = NULL;
 	string difficulty = setDifficulty();
@@ -182,7 +197,7 @@ void playGame() {
 	game.answer = answer;
 	game.difficulty = difficulty;
 	string guess, feedback;
-	int tries, attempt;
+	int attempt;
 	if(difficulty == "Hard"){
 		attempt = 8;
 	}else{
@@ -196,25 +211,29 @@ void playGame() {
 		if(difficulty == "Hard"){
 			cout << feedback << endl;
 			if(feedback == "4 Strike"){
-				cout << "Your guess is correct! You guessed the answer in " << 8 - attempt << " tries" << endl;
+				cout << "Your guess is correct! You guessed the answer in " << 8 - attempt << " tries!" << endl;
 				game.history = head;
 				game.result = "Win";
 				games.push_back(game);
 				return;
+			}else if(attempt > 0){
+				cout << "Your guess is wrong! You still have " << attempt << " tries left." << endl;
 			}else{
-				cout << "Your guess is wrong! You still have " << attempt << " tries left" << endl;
+				break;
 			}
 		}
 		else{
 			cout << feedback << endl;
 			if(feedback == "3 Strike"){
-				cout << "Your guess is correct! You guessed the answer in " << 6 - attempt << " tries" << endl;
+				cout << "Your guess is correct! You guessed the answer in " << 6 - attempt << " tries!" << endl;
 				game.history = head;
 				game.result = "Win";
 				games.push_back(game);
 				return;
+			}else if(attempt > 0){
+				cout << "Your guess is wrong! You still have " << attempt << " tries left." << endl;
 			}else{
-				cout << "Your guess is wrong! You still have " << attempt << " tries left" << endl;
+				break;
 			}
 		}
 	}
@@ -225,33 +244,44 @@ void playGame() {
 	return;
 }
 
-int main() {		
+int main()
+{		
 	srand(time(NULL));
 	playGame();
 	string input;
-	cout << "Would you like to play again? (Y/N)" << endl;
-	while(getline(cin, input)){
-		if(input == "Y"){
-			playGame();
-			cout << "Would you like to play again? (Y/N)" << endl;
-		}else if(input == "N"){
-			break;
-		}else{
-			cout << "Invalid input. Please input again." << endl;
-		}
-	}
-
-	cout << "View game history? (Y/N)" << endl;
+	cout << "View game history? (Y/N): ";
 	while(getline(cin, input)){
 		if(input == "Y"){
 			print_game_history();
-			cout << "View game history again? (Y/N)" << endl;
+			cout << "View game history again? (Y/N): ";
 		}else if(input == "N"){
 			break;
 		}else{
-			cout << "Invalid input. Please input again." << endl;
+			cout << "Invalid input. Please input again.\n(Y/N): " << endl;
 		}
 	}
+	cout << "Would you like to play again? (Y/N): ";
+	while(getline(cin, input)){
+		if(input == "Y"){
+			playGame();
+			cout << "View game history? (Y/N): ";
+			while(getline(cin, input)){
+				if(input == "Y"){
+					print_game_history();
+					cout << "View game history again? (Y/N): ";
+				}else if(input == "N"){
+					break;
+				}else{
+					cout << "Invalid input. Please input again.\n(Y/N): " << endl;
+				}
+			}
+			cout << "Would you like to play again? (Y/N): ";
+		}else if(input == "N"){
+			break;
+		}else{
+			cout << "Invalid input. Please input again.\n(Y/N): " << endl;
+		}
+	}	
 	cout << "Thank you for playing!" << endl;
 	return 0;
 }
