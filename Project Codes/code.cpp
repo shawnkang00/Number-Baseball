@@ -23,9 +23,11 @@ using namespace std;
 bool setDifficulty() {
 	string input;
 	bool difficulty = false;
-	cout << "Please choose difficulty" << endl;
+
 	cout << "Enter 1 for Normal Mode - Guessing a 3 digit number" << endl;
 	cout << "Enter 2 for Hard Mode - Guessing a 4 digit number" << endl;
+	cout << "Please choose difficulty: ";
+
 	while(getline(cin, input)){
 		if(input == "1"){
 			difficulty = false;
@@ -116,8 +118,7 @@ string giveFeedback(string guess, string answer) {
 	return feedback;
 }
 
-void playGame()
-{
+void playGame() {
 	bool difficulty = setDifficulty();
 	// string answer = generateAnswer(difficulty);
 	string answer = "1234";
@@ -135,17 +136,17 @@ void playGame()
 		if(difficulty){
 			cout << feedback << endl;
 			if(feedback == "4 Strike"){
-				cout << "Your guess is correct! You guessed the answer in " << 8 - attempt << " tries" << endl;
+				cout << "Your guess is correct! You guessed the answer in " << 9 - attempt << " tries" << endl;
 			}else{
-				cout << "Your guess is wrong! You still have " << attempt << " tries left" << endl;
+				cout << "Your guess is wrong! You still have " << attempt-1 << " tries left" << endl;
 			}
 		}
 		else{
 			cout << feedback << endl;
 			if(feedback == "3 Strike"){
-				cout << "Your guess is correct! You guessed the answer in " << 6 - attempt << " tries" << endl;
+				cout << "Your guess is correct! You guessed the answer in " << 7 - attempt << " tries" << endl;
 			}else{
-				cout << "Your guess is wrong! You still have " << attempt << " tries left" << endl;
+				cout << "Your guess is wrong! You still have " << attempt-1 << " tries left" << endl;
 			}
 		}
 		attempt--;
@@ -154,8 +155,7 @@ void playGame()
 	return;
 }
 
-int main()
-{		
+int main() {		
 	srand(time(NULL));
 	playGame();
 	string input;
@@ -163,10 +163,12 @@ int main()
 	while(getline(cin, input)){
 		if(input == "Y"){
 			playGame();
-		}else if(input == "N"){
+		}
+		else if(input == "N"){
 			cout << "Thank you for playing!" << endl;
 			break;
-		}else{
+		}
+		else{
 			cout << "Invalid input. Please input again." << endl;
 		}
 	}
