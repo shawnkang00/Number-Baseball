@@ -6,13 +6,13 @@
 
 using namespace std;
 
-struct History{
+struct History {
 	string input;
 	string feedback;
 	History *next;
 };
 
-struct Game{
+struct Game {
 	string difficulty;
 	string answer;
 	History *history;
@@ -21,8 +21,7 @@ struct Game{
 
 vector<Game> games;
 
-void tail_insert(History *&head, History *&tail, string input, string feedback)
-{
+void tail_insert(History *&head, History *&tail, string input, string feedback) {
 	History *newHistory = new History;
 	newHistory->input = input;
 	newHistory->feedback = feedback;
@@ -35,8 +34,7 @@ void tail_insert(History *&head, History *&tail, string input, string feedback)
 	}
 }
 
-void printHistory(History *head, string difficulty)
-{
+void printHistory(History *head, string difficulty) {
 	History *temp;
 	int count = 1;
 	temp = head;
@@ -56,8 +54,7 @@ void printHistory(History *head, string difficulty)
 	return;
 }
 
-void print_game_history()
-{
+void print_game_history() {
 	int size = games.size(), idx;
 	string n;
 	cout << "No.        Difficulty       Result" << endl;
@@ -97,13 +94,11 @@ string setDifficulty() {
 	return difficulty;
 }
 
-bool isNumber(string n)
-{
+bool isNumber(string n) {
 	return n.find_first_not_of("0123456789") == string::npos;
 }
 
-void inputGuess(string &input, string difficulty)
-{
+void inputGuess(string &input, string difficulty) {
 	cout << "Guess: ";
 	while(getline(cin, input)){
 		if(difficulty == "Hard") {
@@ -124,8 +119,7 @@ void inputGuess(string &input, string difficulty)
 	}
 }
 
-string generateNumber(string difficulty)
-{
+string generateNumber(string difficulty) {
 	string answer, numbers = "0123456789";
 	answer += numbers[rand()%10];
     if(difficulty == "Normal"){
