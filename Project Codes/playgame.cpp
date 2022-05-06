@@ -41,6 +41,8 @@ void playGame()
 				return;
 			}else if(attempt == 1){
 				cout << "Your guess is wrong! You still have " << attempt << " try left." << endl;
+			}else if(attempt > 0){
+				cout << "Your guess is wrong! You still have " << attempt << " tries left." << endl;
 			}else{
 				break;
 			}
@@ -54,6 +56,8 @@ void playGame()
 				return;
 			}else if(attempt == 1){
 				cout << "Your guess is wrong! You still have " << attempt << " try left." << endl;
+			}else if(attempt > 0){
+				cout << "Your guess is wrong! You still have " << attempt << " tries left." << endl;
 			}else{
 				break;
 			}
