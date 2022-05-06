@@ -66,6 +66,8 @@ Similarly, there is a game in Korea that is similar to Wordle which was very pop
 ### Program codes in multiple files:
 - Main file, file for functions used in the game, file for the setting of the game
 
+## Demonstration Video
+Google Drive Link: https://drive.google.com/file/d/1BFeUlzgBGQRwrcJxHFxzpJM9eJ4ymvPr/view?usp=sharing
 
 ## Sample Test Cases
 - `input1.txt`: Sample input file for Normal Difficulty
