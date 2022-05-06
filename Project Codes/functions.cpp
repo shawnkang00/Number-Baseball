@@ -7,19 +7,6 @@
 
 using namespace std;
 
-struct History{
-	string input;
-	string feedback;
-	History *next;
-};
-
-struct Game{
-	string difficulty;
-	string answer;
-	History *history;
-	string result;
-};
-
 vector<Game> games;
 
 // This function is to build a linked list forward
