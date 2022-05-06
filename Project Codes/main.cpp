@@ -2,11 +2,11 @@
 #include <string>
 #include <cstdlib> 
 #include <vector>
-#include <time.h>
+#include <algorithm>
 
 using namespace std;
 
-struct History{
+/* struct History{
 	string input;
 	string feedback;
 	History *next;
@@ -21,7 +21,9 @@ struct Game{
 
 vector<Game> games;
 
-void tail_insert(History *&head, History *&tail, string input, string feedback) // function to build linked list forward
+// This function is to build a linked list forward
+// Function Parameters: Head, tail of linked list, input and feedback of node
+void tail_insert(History *&head, History *&tail, string input, string feedback)
 {
 	History *newHistory = new History;
 	newHistory->input = input;
@@ -35,12 +37,30 @@ void tail_insert(History *&head, History *&tail, string input, string feedback) 
 	}
 }
 
-bool isNumber(string n) // function to check if string is a number
+// This function is to check if string is a number
+// Input: string
+// Output: True if all characters in a string is a number, false if else
+bool isNumber(string n) 
 {
 	return n.find_first_not_of("0123456789") == string::npos;
 }
 
-void printHistory(History *head, string difficulty)	//function to print attempt history of particular game
+// This function is to check if string does not have 
+bool isUnique(string input, int difficulty) {
+	for (int i = 0; i < difficulty; i++) {
+		for (int j = i+1; j < difficulty; j++) {
+			if (input[i] == input[j]) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+// This function prints out the history of attempts of a particular game
+// Input: linked list and the difficulty
+// Output: Prints out each attempt made 
+void printHistory(History *head, string difficulty)
 {
 	History *temp;
 	int count = 1;
@@ -61,7 +81,10 @@ void printHistory(History *head, string difficulty)	//function to print attempt 
 	return;
 }
 
-void print_game_history() //function to print history of games
+// This function prints the history of games and lets you choose which game history you wish to view
+// Input: Player input for which game to view
+// Output: Prints out the list of games played 
+void print_game_history() 
 {
 	int size = games.size(), idx;
 	string n;
@@ -91,6 +114,9 @@ void print_game_history() //function to print history of games
 	}
 }
 
+// This function recieves an input from the user to set the difficulty of the game
+// Input: Player input on the difficulty
+// Output: Returns the difficulty value based on the player input
 string setDifficulty() {
 	string input;
 	string difficulty;
@@ -111,38 +137,46 @@ string setDifficulty() {
 	return difficulty;
 }
 
-void inputGuess(string &input, string difficulty)
-{
+// This function checks whether the player's guess is a valid guess
+// Valid guess means the number of digits are same with the answer and all digits in the guess must be different
+// Input: Player's guess and the difficulty of the game
+// Output: Print out a statement telling whether it's a valid guess or not
+void inputGuess(string &input, string difficulty) {
 	cout << "Guess: ";
 	while(getline(cin, input)){
-		if(difficulty == "Hard") {
-			if(input.length() != 4 || !isNumber(input)){
-				cout << "Invalid guess. Please input a 4 digit number.\nGuess: ";
-			}else{
+		if(difficulty == "Normal") {
+			if(input.length() != 3 || !isNumber(input) || !isUnique(input, 3)){
+				cout << "Invalid guess. Please input a valid number.\nGuess: ";
+			}
+			else {
 				return;
 			}
 		}
 		else {
-			if(input.length() != 3 || !isNumber(input)){
-				cout << "Invalid guess. Please input a 3 digit number.\nGuess: ";
-			}
-			else {
+			if(input.length() != 4 || !isNumber(input) || !isUnique(input, 4)){
+				cout << "Invalid guess. Please input a valid number.\nGuess: ";
+			}else{
 				return;
 			}
 		}
 	}
 }
 
-string generateNumber(string difficulty)
+// This function generates a 3-digit or 4-digit number according to the selected difficulty
+// Input: The difficulty of the game (i.e. "Normal" or "Hard")
+// Output: The answer of the game (i.e. a 3-digit or a 4-digit number)
+// Since numbers can start with zero and all digits must be different, we decided to return the generated answer as a string
+string generateAnswer(string difficulty)
 {
 	string num, numbers = "0123456789";
-    if(difficulty == "Hard"){
-		for(int i = 0; i < 4; i++){
+    if(difficulty == "Normal"){
+		for(int i = 0; i < 3; i++){
 			num += numbers[rand()%(10 - i)];
 			numbers.erase(remove(numbers.begin(), numbers.end(), num[i]), numbers.end());
 		}
+		
 	}else{
-		for(int i = 0; i < 3; i++){
+		for(int i = 0; i < 4; i++){
 			num += numbers[rand()%(10 - i)];
 			numbers.erase(remove(numbers.begin(), numbers.end(), num[i]), numbers.end());
 		}
@@ -150,6 +184,8 @@ string generateNumber(string difficulty)
 	return num;
 }
 
+// This function compares the player's guess with the generated answer
+// And returns the feedback after comparison to tell how many strikes or balls, or it's an OUT
 string giveFeedback(string guess, string answer) {
     int strike = 0, ball = 0;
 	string feedback;
@@ -188,30 +224,33 @@ string giveFeedback(string guess, string answer) {
 	return feedback;
 }
 
+// This function is used to play the whole game my making the function call in the main function
+// Input: No input
+// Output: Print statements to tell the game progress and results
 void playGame()
 {
 	Game game;
 	History *head = NULL, *tail = NULL;
 	string difficulty = setDifficulty();
-	string answer = generateNumber(difficulty);
+	string answer = generateAnswer(difficulty);
 	game.answer = answer;
 	game.difficulty = difficulty;
 	string guess, feedback;
 	int attempt;
-	if(difficulty == "Hard"){
-		attempt = 8;
-	}else{
+	if(difficulty == "Normal"){
 		attempt = 6;
+	}else{
+		attempt = 8;
 	}
 	while(attempt > 0){
 		inputGuess(guess, difficulty);
 		feedback = giveFeedback(guess, answer);
 		tail_insert(head, tail, guess, feedback);
 		attempt--;
-		if(difficulty == "Hard"){
+		if(difficulty == "Normal"){
 			cout << feedback << endl;
-			if(feedback == "4 Strike"){
-				cout << "Your guess is correct! You guessed the answer in " << 8 - attempt << " tries!" << endl;
+			if(feedback == "3 Strike"){
+				cout << "Your guess is correct! You guessed the answer in " << 6 - attempt << " tries!" << endl;
 				game.history = head;
 				game.result = "Win";
 				games.push_back(game);
@@ -221,11 +260,10 @@ void playGame()
 			}else{
 				break;
 			}
-		}
-		else{
+		}else{
 			cout << feedback << endl;
-			if(feedback == "3 Strike"){
-				cout << "Your guess is correct! You guessed the answer in " << 6 - attempt << " tries!" << endl;
+			if(feedback == "4 Strike"){
+				cout << "Your guess is correct! You guessed the answer in " << 8 - attempt << " tries!" << endl;
 				game.history = head;
 				game.result = "Win";
 				games.push_back(game);
@@ -242,7 +280,7 @@ void playGame()
 	games.push_back(game);
 	cout << "You ran out of tries, better luck next time!" << endl;
 	return;
-}
+} */
 
 int main()
 {		
@@ -257,7 +295,7 @@ int main()
 		}else if(input == "N"){
 			break;
 		}else{
-			cout << "Invalid input. Please input again.\n(Y/N): " << endl;
+			cout << "Invalid input. Please input again.\n(Y/N): ";
 		}
 	}
 	cout << "Would you like to play again? (Y/N): ";
@@ -272,14 +310,14 @@ int main()
 				}else if(input == "N"){
 					break;
 				}else{
-					cout << "Invalid input. Please input again.\n(Y/N): " << endl;
+					cout << "Invalid input. Please input again.\n(Y/N): ";
 				}
 			}
 			cout << "Would you like to play again? (Y/N): ";
 		}else if(input == "N"){
 			break;
 		}else{
-			cout << "Invalid input. Please input again.\n(Y/N): " << endl;
+			cout << "Invalid input. Please input again.\n(Y/N): ";
 		}
 	}	
 	cout << "Thank you for playing!" << endl;

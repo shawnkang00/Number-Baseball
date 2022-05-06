@@ -1,16 +1,39 @@
-#include <iostream>
-#include <string>
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
 
-using namespace std;
+class History
+{
+	public:
+		string input;
+		string feedback;
+		History *next;
+};
 
-bool setDifficulty();
+class Game
+{
+	public:
+		string difficulty;
+		string answer;
+		History *history;
+		string result;
+};
 
-bool isNumber(string);
+void tail_insert(History *&head, History *&tail, string input, string feedback);
 
-void inputGuess(string &, bool);
+bool isNumber(string n);
 
-string generateAnswer(int);
+bool isUnique(string input, int difficulty);
 
-string giveFeedback(string, string);
+void printHistory(History *head, string difficulty);
 
-void playGame();
+void print_game_history();
+
+string setDifficulty();
+
+void inputGuess(string &input, string difficulty);
+
+string generateAnswer(string difficulty);
+
+string giveFeedback(string guess, string answer);
+
+#endif
