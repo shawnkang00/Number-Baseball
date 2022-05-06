@@ -1,0 +1,97 @@
+Please choose difficulty
+Enter 1 for Normal Mode - Guessing a 3 digit number
+Enter 2 for Hard Mode - Guessing a 4 digit number
+
+Guess: 
+OUT
+Your guess is wrong! You still have 5 tries left.
+Guess: 
+1 Strike 1 Ball
+Your guess is wrong! You still have 4 tries left.
+Guess: 
+OUT
+Your guess is wrong! You still have 3 tries left.
+Guess: 
+1 Strike 1 Ball
+Your guess is wrong! You still have 2 tries left.
+Guess: 
+2 Ball
+Your guess is wrong! You still have 1 try left.
+Guess: 
+3 Strike
+Your guess is correct! You guessed the answer in 6 tries!
+View game history? (Y/N): 
+Would you like to play again? (Y/N): 
+Please choose difficulty
+Enter 1 for Normal Mode - Guessing a 3 digit number
+Enter 2 for Hard Mode - Guessing a 4 digit number
+
+Invalid input. Please choose difficulty again.
+
+Invalid input. Please choose difficulty again.
+
+Guess: 
+Invalid guess. Please input a valid number.
+Guess: 
+Invalid guess. Please input a valid number.
+Guess: 
+1 Strike
+Your guess is wrong! You still have 7 tries left.
+Guess: 
+2 Ball
+Your guess is wrong! You still have 6 tries left.
+Guess: 
+1 Ball
+Your guess is wrong! You still have 5 tries left.
+Guess: 
+2 Ball
+Your guess is wrong! You still have 4 tries left.
+Guess: 
+OUT
+Your guess is wrong! You still have 3 tries left.
+Guess: 
+1 Ball
+Your guess is wrong! You still have 2 tries left.
+Guess: 
+Invalid guess. Please input a valid number.
+Guess: 
+1 Strike
+Your guess is wrong! You still have 1 try left.
+Guess: 
+Invalid guess. Please input a valid number.
+Guess: 
+OUT
+You ran out of tries, better luck next time!
+View game history? (Y/N): 
+No.        Difficulty       Result
+Game 1:      Normal          Win
+Game 2:       Hard           Lose
+Input the number of the game you wish to view. (1~2)
+
+Game 2 - Answer: 7289
+Attempt No.  Guess      Feedback
+Attempt 1:   1234       1 Strike
+Attempt 2:   5678       2 Ball
+Attempt 3:   1324       1 Ball
+Attempt 4:   8905       2 Ball
+Attempt 5:   1536       OUT
+Attempt 6:   1352       1 Ball
+Attempt 7:   1253       1 Strike
+Attempt 8:   1346       OUT
+View game history again? (Y/N): 
+No.        Difficulty       Result
+Game 1:      Normal          Win
+Game 2:       Hard           Lose
+Input the number of the game you wish to view. (1~2)
+
+Game 1 - Answer: 054
+Attempt No.  Guess      Feedback
+Attempt 1:   123        OUT
+Attempt 2:   456        1 Strike 1 Ball
+Attempt 3:   789        OUT
+Attempt 4:   046        1 Strike 1 Ball
+Attempt 5:   506        2 Ball
+Attempt 6:   054        3 Strike
+View game history again? (Y/N): 
+Would you like to play again? (Y/N): 
+Thank you for playing!
