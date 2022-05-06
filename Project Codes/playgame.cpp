@@ -1,4 +1,4 @@
-// playgame.cpp
+/* // playgame.cpp
 #include <iostream>
 #include <string>
 #include <cstdlib> 
@@ -9,6 +9,7 @@
 #include "functions.h"
 #include "playgame.h"
 
+using namespace std;
 
 // This function is used to play the whole game my making the function call in the main function
 // Input: No input
@@ -66,4 +67,4 @@ void playGame()
 	games.push_back(game);
 	cout << "You ran out of tries, better luck next time!" << endl;
 	return;
-}
+} */

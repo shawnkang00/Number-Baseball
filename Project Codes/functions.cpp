@@ -1,7 +1,9 @@
+// functions.cpp
 #include <iostream>
 #include <string>
 #include <cstdlib> 
 #include <vector>
+#include <time.h>
 #include <algorithm>
 #include "functions.h" 
 
@@ -172,53 +174,6 @@ string generateAnswer(string difficulty)
 	return num;
 }
 
-// This function checks whether the player's guess is a valid guess
-// Valid guess means the number of digits are same with the answer and all digits in the guess must be different
-// Input: Player's guess and the difficulty of the game
-// Output: Print out a statement telling whether it's a valid guess or not
-void inputGuess(string &input, string difficulty) {
-	cout << "Guess: ";
-	while(getline(cin, input)){
-		if(difficulty == "Normal") {
-			if(input.length() != 3 || !isNumber(input) || !isUnique(input, 3)){
-				cout << "Invalid guess. Please input a valid number.\nGuess: ";
-			}
-			else {
-				return;
-			}
-		}
-		else {
-			if(input.length() != 4 || !isNumber(input) || !isUnique(input, 4)){
-				cout << "Invalid guess. Please input a valid number.\nGuess: ";
-			}else{
-				return;
-			}
-		}
-	}
-}
-
-// This function generates a 3-digit or 4-digit number according to the selected difficulty
-// Input: The difficulty of the game (i.e. "Normal" or "Hard")
-// Output: The answer of the game (i.e. a 3-digit or a 4-digit number)
-// Since numbers can start with zero and all digits must be different, we decided to return the generated answer as a string
-string generateAnswer(string difficulty)
-{
-	string num, numbers = "0123456789";
-    if(difficulty == "Normal"){
-		for(int i = 0; i < 3; i++){
-			num += numbers[rand()%(10 - i)];
-			numbers.erase(remove(numbers.begin(), numbers.end(), num[i]), numbers.end());
-		}
-		
-	}else{
-		for(int i = 0; i < 4; i++){
-			num += numbers[rand()%(10 - i)];
-			numbers.erase(remove(numbers.begin(), numbers.end(), num[i]), numbers.end());
-		}
-	}
-	return num;
-}
-
 // This function compares the player's guess with the generated answer
 // And returns the feedback after comparison to tell how many strikes or balls, or it's an OUT
 string giveFeedback(string guess, string answer) {
@@ -259,3 +214,60 @@ string giveFeedback(string guess, string answer) {
 	return feedback;
 }
 
+// This function is used to play the whole game my making the function call in the main function
+// Input: No input
+// Output: Print statements to tell the game progress and results
+void playGame()
+{
+	Game game;
+	History *head = NULL, *tail = NULL;
+	string difficulty = setDifficulty();
+	string answer = generateAnswer(difficulty);
+	game.answer = answer;
+	game.difficulty = difficulty;
+	string guess, feedback;
+	int attempt;
+	if(difficulty == "Normal"){
+		attempt = 6;
+	}else{
+		attempt = 8;
+	}
+	while(attempt > 0){
+		inputGuess(guess, difficulty);
+		feedback = giveFeedback(guess, answer);
+		tail_insert(head, tail, guess, feedback);
+		attempt--;
+		if(difficulty == "Normal"){
+			cout << feedback << endl;
+			if(feedback == "3 Strike"){
+				cout << "Your guess is correct! You guessed the answer in " << 6 - attempt << " tries!" << endl;
+				game.history = head;
+				game.result = "Win";
+				games.push_back(game);
+				return;
+			}else if(attempt > 0){
+				cout << "Your guess is wrong! You still have " << attempt << " tries left." << endl;
+			}else{
+				break;
+			}
+		}else{
+			cout << feedback << endl;
+			if(feedback == "4 Strike"){
+				cout << "Your guess is correct! You guessed the answer in " << 8 - attempt << " tries!" << endl;
+				game.history = head;
+				game.result = "Win";
+				games.push_back(game);
+				return;
+			}else if(attempt > 0){
+				cout << "Your guess is wrong! You still have " << attempt << " tries left." << endl;
+			}else{
+				break;
+			}
+		}
+	}
+	game.history = head;
+	game.result = "Lose";
+	games.push_back(game);
+	cout << "You ran out of tries, better luck next time!" << endl;
+	return;
+}
