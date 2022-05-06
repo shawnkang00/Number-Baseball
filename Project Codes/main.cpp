@@ -2,9 +2,9 @@
 #include <string>
 #include <cstdlib> 
 #include <vector>
-#include <time.h>
 #include <algorithm>
-#include "functions.h" 
+#include "playgame.h"
+#include "functions.h"
 
 using namespace std;
 

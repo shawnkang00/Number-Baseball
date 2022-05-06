@@ -21,6 +21,8 @@ class Game
 		string result;
 };
 
+extern vector<Game> games;
+
 void tail_insert(History *&head, History *&tail, string input, string feedback);
 
 bool isNumber(string n);
