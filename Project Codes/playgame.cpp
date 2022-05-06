@@ -5,7 +5,6 @@
 #include <vector>
 #include <time.h>
 #include <algorithm>
-
 #include "functions.h"
 #include "playgame.h"
 

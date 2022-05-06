@@ -3,6 +3,8 @@
 #include <cstdlib> 
 #include <vector>
 #include <algorithm>
+#include "playgame.h"
+#include "functions.h"
 
 using namespace std;
 
