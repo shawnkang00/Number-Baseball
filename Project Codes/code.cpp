@@ -143,7 +143,7 @@ void inputGuess(string &input, string difficulty)
 string generateAnswer(string difficulty)
 {
 	string num, numbers = "0123456789";
-    if(difficulty == "Hard"){
+    if(difficulty == "Normal"){
 		for(int i = 0; i < 3; i++){
 			num += numbers[rand()%(10 - i)];
 			numbers.erase(remove(numbers.begin(), numbers.end(), num[i]), numbers.end());
@@ -211,20 +211,20 @@ void playGame()
 	game.difficulty = difficulty;
 	string guess, feedback;
 	int attempt;
-	if(difficulty == "Hard"){
-		attempt = 8;
-	}else{
+	if(difficulty == "Normal"){
 		attempt = 6;
+	}else{
+		attempt = 8;
 	}
 	while(attempt > 0){
 		inputGuess(guess, difficulty);
 		feedback = giveFeedback(guess, answer);
 		tail_insert(head, tail, guess, feedback);
 		attempt--;
-		if(difficulty == "Hard"){
+		if(difficulty == "Normal"){
 			cout << feedback << endl;
-			if(feedback == "4 Strike"){
-				cout << "Your guess is correct! You guessed the answer in " << 8 - attempt << " tries!" << endl;
+			if(feedback == "3 Strike"){
+				cout << "Your guess is correct! You guessed the answer in " << 6 - attempt << " tries!" << endl;
 				game.history = head;
 				game.result = "Win";
 				games.push_back(game);
@@ -234,11 +234,10 @@ void playGame()
 			}else{
 				break;
 			}
-		}
-		else{
+		}else{
 			cout << feedback << endl;
-			if(feedback == "3 Strike"){
-				cout << "Your guess is correct! You guessed the answer in " << 6 - attempt << " tries!" << endl;
+			if(feedback == "4 Strike"){
+				cout << "Your guess is correct! You guessed the answer in " << 8 - attempt << " tries!" << endl;
 				game.history = head;
 				game.result = "Win";
 				games.push_back(game);
