@@ -1,6 +1,8 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
+using namespace std;
+
 class History
 {
 	public:
@@ -17,6 +19,8 @@ class Game
 		History *history;
 		string result;
 };
+
+extern vector<Game> games;
 
 void tail_insert(History *&head, History *&tail, string input, string feedback);
 

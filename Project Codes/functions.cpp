@@ -172,53 +172,6 @@ string generateAnswer(string difficulty)
 	return num;
 }
 
-// This function checks whether the player's guess is a valid guess
-// Valid guess means the number of digits are same with the answer and all digits in the guess must be different
-// Input: Player's guess and the difficulty of the game
-// Output: Print out a statement telling whether it's a valid guess or not
-void inputGuess(string &input, string difficulty) {
-	cout << "Guess: ";
-	while(getline(cin, input)){
-		if(difficulty == "Normal") {
-			if(input.length() != 3 || !isNumber(input) || !isUnique(input, 3)){
-				cout << "Invalid guess. Please input a valid number.\nGuess: ";
-			}
-			else {
-				return;
-			}
-		}
-		else {
-			if(input.length() != 4 || !isNumber(input) || !isUnique(input, 4)){
-				cout << "Invalid guess. Please input a valid number.\nGuess: ";
-			}else{
-				return;
-			}
-		}
-	}
-}
-
-// This function generates a 3-digit or 4-digit number according to the selected difficulty
-// Input: The difficulty of the game (i.e. "Normal" or "Hard")
-// Output: The answer of the game (i.e. a 3-digit or a 4-digit number)
-// Since numbers can start with zero and all digits must be different, we decided to return the generated answer as a string
-string generateAnswer(string difficulty)
-{
-	string num, numbers = "0123456789";
-    if(difficulty == "Normal"){
-		for(int i = 0; i < 3; i++){
-			num += numbers[rand()%(10 - i)];
-			numbers.erase(remove(numbers.begin(), numbers.end(), num[i]), numbers.end());
-		}
-		
-	}else{
-		for(int i = 0; i < 4; i++){
-			num += numbers[rand()%(10 - i)];
-			numbers.erase(remove(numbers.begin(), numbers.end(), num[i]), numbers.end());
-		}
-	}
-	return num;
-}
-
 // This function compares the player's guess with the generated answer
 // And returns the feedback after comparison to tell how many strikes or balls, or it's an OUT
 string giveFeedback(string guess, string answer) {
