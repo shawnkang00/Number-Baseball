@@ -1,7 +1,9 @@
+// functions.cpp
 #include <iostream>
 #include <string>
 #include <cstdlib> 
 #include <vector>
+#include <time.h>
 #include <algorithm>
 #include "functions.h" 
 
@@ -211,4 +213,3 @@ string giveFeedback(string guess, string answer) {
 
 	return feedback;
 }
-
