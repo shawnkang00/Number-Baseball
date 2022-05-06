@@ -16,13 +16,15 @@ int main() {
     if(difficulty == "Normal"){
 		for(int i = 0; i < 3; i++){
 			num += numbers[rand()%(10 - i)];
-			numbers.erase(stoi(num[i]), 1);
+			int idx = (int)num[i];
+			numbers.erase(idx, 1);
 		}
 		
 	}else{
 		for(int i = 0; i < 4; i++){
 			num += numbers[rand()%(10 - i)];
-			numbers.erase(num[i], 1);
+			int idx = (int)num[i];
+			numbers.erase(idx, 1);
 		}
 	}
 	cout << num << endl;
