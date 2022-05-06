@@ -118,18 +118,18 @@ void inputGuess(string &input, string difficulty)
 {
 	cout << "Guess: ";
 	while(getline(cin, input)){
-		if(difficulty == "Hard") {
-			if(input.length() != 4 || !isNumber(input)){
-				cout << "Invalid guess. Please input a 4 digit number.\nGuess: ";
-			}else{
-				return;
-			}
-		}
-		else {
+		if(difficulty == "Normal") {
 			if(input.length() != 3 || !isNumber(input)){
 				cout << "Invalid guess. Please input a 3 digit number.\nGuess: ";
 			}
 			else {
+				return;
+			}
+		}
+		else {
+			if(input.length() != 4 || !isNumber(input)){
+				cout << "Invalid guess. Please input a 4 digit number.\nGuess: ";
+			}else{
 				return;
 			}
 		}
@@ -140,16 +140,17 @@ void inputGuess(string &input, string difficulty)
 // Input: The difficulty of the game (i.e. "Normal" or "Hard")
 // Output: The answer of the game (i.e. a 3-digit or a 4-digit number)
 // Since numbers can start with zero and all digits must be different, we decided to return the generated answer as a string
-string generateNumber(string difficulty)
+string generateAnswer(string difficulty)
 {
 	string num, numbers = "0123456789";
     if(difficulty == "Normal"){
-		for(int i = 0; i < 4; i++){
+		for(int i = 0; i < 3; i++){
 			num += numbers[rand()%(10 - i)];
 			numbers.erase(remove(numbers.begin(), numbers.end(), num[i]), numbers.end());
 		}
+		
 	}else{
-		for(int i = 0; i < 3; i++){
+		for(int i = 0; i < 4; i++){
 			num += numbers[rand()%(10 - i)];
 			numbers.erase(remove(numbers.begin(), numbers.end(), num[i]), numbers.end());
 		}
@@ -205,7 +206,7 @@ void playGame()
 	Game game;
 	History *head = NULL, *tail = NULL;
 	string difficulty = setDifficulty();
-	string answer = generateNumber(difficulty);
+	string answer = generateAnswer(difficulty);
 	game.answer = answer;
 	game.difficulty = difficulty;
 	string guess, feedback;
