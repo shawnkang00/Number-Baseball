@@ -1,1 +1,1 @@
-# This folder has all the makefiles and source files (codes) for the project
+# This folder contains all the makefiles and source files (codes) for the project
