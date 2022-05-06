@@ -40,6 +40,17 @@ bool isNumber(string n) // function to check if string is a number
 	return n.find_first_not_of("0123456789") == string::npos;
 }
 
+bool isUnique(string input, int difficulty) {
+	for (int i = 0; i < difficulty; i++) {
+		for (int j = i+1; j < difficulty; j++) {
+			if (input[i] == input[j]) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
 void printHistory(History *head, string difficulty)	//function to print attempt history of particular game
 {
 	History *temp;
@@ -112,23 +123,23 @@ string setDifficulty() {
 }
 
 // This function checks whether the player's guess is a valid guess
+// Valid guess means the number of digits are same with the answer and all digits in the guess must be different
 // Input: Player's guess and the difficulty of the game
 // Output: Print out a statement telling whether it's a valid guess or not
-void inputGuess(string &input, string difficulty)
-{
+void inputGuess(string &input, string difficulty) {
 	cout << "Guess: ";
 	while(getline(cin, input)){
 		if(difficulty == "Normal") {
-			if(input.length() != 3 || !isNumber(input)){
-				cout << "Invalid guess. Please input a 3 digit number.\nGuess: ";
+			if(input.length() != 3 || !isNumber(input) || !isUnique(input, 3)){
+				cout << "Invalid guess. Please input a valid number.\nGuess: ";
 			}
 			else {
 				return;
 			}
 		}
 		else {
-			if(input.length() != 4 || !isNumber(input)){
-				cout << "Invalid guess. Please input a 4 digit number.\nGuess: ";
+			if(input.length() != 4 || !isNumber(input) || !isUnique(input, 4)){
+				cout << "Invalid guess. Please input a valid number.\nGuess: ";
 			}else{
 				return;
 			}
