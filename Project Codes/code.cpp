@@ -21,7 +21,9 @@ struct Game{
 
 vector<Game> games;
 
-void tail_insert(History *&head, History *&tail, string input, string feedback) // function to build linked list forward
+// This function is to build a linked list forward
+// Function Parameters: Head, tail of linked list, input and feedback of node
+void tail_insert(History *&head, History *&tail, string input, string feedback)
 {
 	History *newHistory = new History;
 	newHistory->input = input;
@@ -34,13 +36,16 @@ void tail_insert(History *&head, History *&tail, string input, string feedback) 
 		tail = newHistory;
 	}
 }
-
-bool isNumber(string n) // function to check if string is a number
+// This function is to check if string is a number
+// Input: string
+// Output: True if all characters in a string is a number, false if else
+bool isNumber(string n) 
 {
 	return n.find_first_not_of("0123456789") == string::npos;
 }
 
-void printHistory(History *head, string difficulty)	//function to print attempt history of particular game
+// This function prints the attempt history of particular game
+void printHistory(History *head, string difficulty)	
 {
 	History *temp;
 	int count = 1;
@@ -61,7 +66,8 @@ void printHistory(History *head, string difficulty)	//function to print attempt 
 	return;
 }
 
-void print_game_history() //function to print history of games
+// This function prints the history of games and lets you choose which game history you wish to view
+void print_game_history() 
 {
 	int size = games.size(), idx;
 	string n;
@@ -91,6 +97,9 @@ void print_game_history() //function to print history of games
 	}
 }
 
+// This function recieves an input from the user to set the difficulty of the game
+// Input: Player input on the difficulty
+// Output: Returns the difficulty value based on the player input
 string setDifficulty() {
 	string input;
 	string difficulty;
