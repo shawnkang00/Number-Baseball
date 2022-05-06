@@ -1,7 +1,22 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
-using namespace std;
+class History
+{
+	public:
+		string input;
+		string feedback;
+		History *next;
+};
+
+class Game
+{
+	public:
+		string difficulty;
+		string answer;
+		History *history;
+		string result;
+};
 
 void tail_insert(History *&head, History *&tail, string input, string feedback);
 
