@@ -41,6 +41,4 @@ string generateAnswer(string difficulty);
 
 string giveFeedback(string guess, string answer);
 
-void playGame();
-
 #endif
