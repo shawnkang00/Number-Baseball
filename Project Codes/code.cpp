@@ -111,6 +111,9 @@ string setDifficulty() {
 	return difficulty;
 }
 
+// This function checks whether the player's guess is a valid guess
+// Input: Player's guess and the difficulty of the game
+// Output: Print out a statement telling whether it's a valid guess or not
 void inputGuess(string &input, string difficulty)
 {
 	cout << "Guess: ";
@@ -133,6 +136,10 @@ void inputGuess(string &input, string difficulty)
 	}
 }
 
+// This function generates a 3-digit or 4-digit number according to the selected difficulty
+// Input: The difficulty of the game (i.e. "Normal" or "Hard")
+// Output: The answer of the game (i.e. a 3-digit or a 4-digit number)
+// Since numbers can start with zero and all digits must be different, we decided to return the generated answer as a string
 string generateNumber(string difficulty)
 {
 	string num, numbers = "0123456789";
@@ -150,6 +157,8 @@ string generateNumber(string difficulty)
 	return num;
 }
 
+// This function compares the player's guess with the generated answer
+// And returns the feedback after comparison to tell how many strikes or balls, or it's an OUT
 string giveFeedback(string guess, string answer) {
     int strike = 0, ball = 0;
 	string feedback;
@@ -188,6 +197,9 @@ string giveFeedback(string guess, string answer) {
 	return feedback;
 }
 
+// This function is used to play the whole game my making the function call in the main function
+// Input: No input
+// Output: Print statements to tell the game progress and results
 void playGame()
 {
 	Game game;
