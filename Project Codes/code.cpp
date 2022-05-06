@@ -295,7 +295,7 @@ int main()
 		}else if(input == "N"){
 			break;
 		}else{
-			cout << "Invalid input. Please input again.\n(Y/N): " << endl;
+			cout << "Invalid input. Please input again.\n(Y/N): ";
 		}
 	}
 	cout << "Would you like to play again? (Y/N): ";
@@ -310,14 +310,14 @@ int main()
 				}else if(input == "N"){
 					break;
 				}else{
-					cout << "Invalid input. Please input again.\n(Y/N): " << endl;
+					cout << "Invalid input. Please input again.\n(Y/N): ";
 				}
 			}
 			cout << "Would you like to play again? (Y/N): ";
 		}else if(input == "N"){
 			break;
 		}else{
-			cout << "Invalid input. Please input again.\n(Y/N): " << endl;
+			cout << "Invalid input. Please input again.\n(Y/N): ";
 		}
 	}	
 	cout << "Thank you for playing!" << endl;
