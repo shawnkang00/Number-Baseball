@@ -9,7 +9,7 @@ bool isNumber(string);
 
 void inputGuess(string &, bool);
 
-string generateAnswer(int);
+string generateAnswer(bool);
 
 string giveFeedback(string, string);
 
