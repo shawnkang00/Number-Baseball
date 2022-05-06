@@ -1,3 +1,4 @@
+// functions.h
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
@@ -39,5 +40,7 @@ void inputGuess(string &input, string difficulty);
 string generateAnswer(string difficulty);
 
 string giveFeedback(string guess, string answer);
+
+void playGame();
 
 #endif
