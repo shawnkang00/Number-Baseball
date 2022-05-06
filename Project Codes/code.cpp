@@ -111,18 +111,14 @@ string setDifficulty() {
 	return difficulty;
 }
 
+// This function checks whether the player's guess is a valid guess
+// Input: Player's guess and the difficulty of the game
+// Output: Print out a statement telling whether it's a valid guess or not
 void inputGuess(string &input, string difficulty)
 {
 	cout << "Guess: ";
 	while(getline(cin, input)){
-		if(difficulty == "Hard") {
-			if(input.length() != 4 || !isNumber(input)){
-				cout << "Invalid guess. Please input a 4 digit number.\nGuess: ";
-			}else{
-				return;
-			}
-		}
-		else {
+		if(difficulty == "Normal") {
 			if(input.length() != 3 || !isNumber(input)){
 				cout << "Invalid guess. Please input a 3 digit number.\nGuess: ";
 			}
@@ -130,19 +126,31 @@ void inputGuess(string &input, string difficulty)
 				return;
 			}
 		}
+		else {
+			if(input.length() != 4 || !isNumber(input)){
+				cout << "Invalid guess. Please input a 4 digit number.\nGuess: ";
+			}else{
+				return;
+			}
+		}
 	}
 }
 
-string generateNumber(string difficulty)
+// This function generates a 3-digit or 4-digit number according to the selected difficulty
+// Input: The difficulty of the game (i.e. "Normal" or "Hard")
+// Output: The answer of the game (i.e. a 3-digit or a 4-digit number)
+// Since numbers can start with zero and all digits must be different, we decided to return the generated answer as a string
+string generateAnswer(string difficulty)
 {
 	string num, numbers = "0123456789";
     if(difficulty == "Hard"){
-		for(int i = 0; i < 4; i++){
+		for(int i = 0; i < 3; i++){
 			num += numbers[rand()%(10 - i)];
 			numbers.erase(remove(numbers.begin(), numbers.end(), num[i]), numbers.end());
 		}
+		
 	}else{
-		for(int i = 0; i < 3; i++){
+		for(int i = 0; i < 4; i++){
 			num += numbers[rand()%(10 - i)];
 			numbers.erase(remove(numbers.begin(), numbers.end(), num[i]), numbers.end());
 		}
@@ -150,6 +158,8 @@ string generateNumber(string difficulty)
 	return num;
 }
 
+// This function compares the player's guess with the generated answer
+// And returns the feedback after comparison to tell how many strikes or balls, or it's an OUT
 string giveFeedback(string guess, string answer) {
     int strike = 0, ball = 0;
 	string feedback;
@@ -188,12 +198,15 @@ string giveFeedback(string guess, string answer) {
 	return feedback;
 }
 
+// This function is used to play the whole game my making the function call in the main function
+// Input: No input
+// Output: Print statements to tell the game progress and results
 void playGame()
 {
 	Game game;
 	History *head = NULL, *tail = NULL;
 	string difficulty = setDifficulty();
-	string answer = generateNumber(difficulty);
+	string answer = generateAnswer(difficulty);
 	game.answer = answer;
 	game.difficulty = difficulty;
 	string guess, feedback;

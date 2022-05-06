@@ -9,7 +9,7 @@
 2. Kang Hyunwoo (UID: 3035552624)
 
 
-## Proposal Introduction
+## Introduction
 Wordle is a very popular game these days and it has gone viral on social media. Wordle is a game guessing a five-letter word in six attempts. Each time you make a guess, a feedback (a hint) will be given with colors green, yellow, or gray.
 
 Similarly, there is a game in Korea that is similar to Wordle which was very popular among high school students a few years ago, beacuse all you need to play this game is a pen and a paper. This game is called Number Baseball, instead of guessing a word like in Wordle, Number Baseball is a game guessing a number (usually with 3 or 4 digits). Each time a player makes a guess, a feedback will be given with concepts in baseball (Strike, Ball, and Out).
