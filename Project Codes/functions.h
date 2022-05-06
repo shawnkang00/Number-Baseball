@@ -21,4 +21,4 @@ string generateAnswer(string difficulty);
 
 string giveFeedback(string guess, string answer);
 
-#endif  r
+#endif

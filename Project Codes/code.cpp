@@ -6,7 +6,7 @@
 
 using namespace std;
 
-struct History{
+/* struct History{
 	string input;
 	string feedback;
 	History *next;
@@ -280,7 +280,7 @@ void playGame()
 	games.push_back(game);
 	cout << "You ran out of tries, better luck next time!" << endl;
 	return;
-}
+} */
 
 int main()
 {		
