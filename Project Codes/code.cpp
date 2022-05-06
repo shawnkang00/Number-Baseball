@@ -2,7 +2,6 @@
 #include <string>
 #include <cstdlib> 
 #include <vector>
-#include <time.h>
 #include <algorithm>
 
 using namespace std;
@@ -46,6 +45,7 @@ bool isNumber(string n)
 	return n.find_first_not_of("0123456789") == string::npos;
 }
 
+// This function is to check if string does not have 
 bool isUnique(string input, int difficulty) {
 	for (int i = 0; i < difficulty; i++) {
 		for (int j = i+1; j < difficulty; j++) {
