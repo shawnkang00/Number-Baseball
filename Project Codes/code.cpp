@@ -36,6 +36,7 @@ void tail_insert(History *&head, History *&tail, string input, string feedback)
 		tail = newHistory;
 	}
 }
+
 // This function is to check if string is a number
 // Input: string
 // Output: True if all characters in a string is a number, false if else
@@ -55,7 +56,9 @@ bool isUnique(string input, int difficulty) {
 	return true;
 }
 
-//function to print attempt history of particular game
+// This function prints out the history of attempts of a particular game
+// Input: linked list and the difficulty
+// Output: Prints out each attempt made 
 void printHistory(History *head, string difficulty)
 {
 	History *temp;
@@ -78,6 +81,8 @@ void printHistory(History *head, string difficulty)
 }
 
 // This function prints the history of games and lets you choose which game history you wish to view
+// Input: Player input for which game to view
+// Output: Prints out the list of games played 
 void print_game_history() 
 {
 	int size = games.size(), idx;
