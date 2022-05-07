@@ -31,10 +31,10 @@ void tail_insert(History *&head, History *&tail, string input, string feedback)
 void delete_head(History *&head)
 {
 	if (head != NULL){
-        History * tmp = head;
-        head = head->next;
-        delete tmp;
-    }
+		History * tmp = head;
+		head = head->next;
+		delete tmp;
+	}
 }
 
 // This function is to delete all linked lists in the vector game
@@ -44,8 +44,8 @@ void delete_list()
 	for(int i = 0; i < size; i++){
 		History *tmp = games[i].history;	
 		while (tmp != NULL ){
-        	delete_head(tmp);
-    	}
+        		delete_head(tmp);
+    		}
 	}
 }
 
@@ -149,7 +149,7 @@ string setDifficulty() {
 	return difficulty;
 }
 
-// This function checks whether the player's guess is a valid guess
+// This function checks whether the player's guess is a valid guess and changes the input when a valid input is given by the user
 // Valid guess means the number of digits are same with the answer and all digits in the guess must be different
 // Input: Player's guess and the difficulty of the game
 // Output: Print out a statement telling whether it's a valid guess or not

@@ -8,7 +8,7 @@
 #include "functions.h"
 #include "playgame.h"
 
-// This function is used to play the whole game my making the function call in the main function
+// This function is used to play the whole game by making the function call in the main function
 // Input: No input
 // Output: Print statements to tell the game progress and results
 void playGame()
