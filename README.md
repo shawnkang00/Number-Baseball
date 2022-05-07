@@ -24,18 +24,18 @@ Similarly, there is a game in Korea that is similar to Wordle which was very pop
 	- There are no duplicate digits in the answer, all the digits in the answer must be unique. (i.e. Numbers like 111 or 929 is not allowed)
 	- All digits in the answer can be numbers in between 0~9 (i.e. Number can start with 0, like 025).
 
-3. The program then returns feedback based on the guess. 
-    - If a number in the player's guess exists in the answer and is in the correct place (correct digit), it is a “STRIKE”.
-    - If a number in the player's guess exists in the answer but is in the wrong place, it is a “BALL”.
-    - If NONE of the numbers in the player's guess exists in the answer, it is an “OUT”.
-	- The feedback will tell the play the TOTAL number of strikes and balls in the player’s guess, or an out. (e.g. 1 STRIKE 2 BALL, 3 STRIKE, 2 BALL, OUT, etc.)
+3. The player attempts to guess the number by inputting the number with the corresponding number of digits set by the difficulty. If the player inputs an invalid number, an error message will appear and the player has to input a number again.
 
-4. The player continues to guess the number based on the feedback returned by the program after each guess until the player runs out of attempts. 
+4. The program then returns feedback based on the guess.
+	- If a number in the player's guess exists in the answer and is in the correct position (correct digit), it is a “STRIKE”.
+	- If a number in the player's guess exists in the answer but is in the wrong position, it is a “BALL”.
+	- If NONE of the numbers in the player's guess exists in the answer, it is an “OUT”.
+	- The feedback will tell the player the TOTAL number of strikes and balls in the player’s guess, or an out. (e.g. 1 STRIKE 2 BALL, 3 STRIKE, 2 BALL, OUT, etc.)
 
-5. The game ends when the player correctly guesses the number or runs out of attempts.
 
-6. After the game ends, the player can choose to play the game again or quit the game
+5. The player continues to guess the number based on the feedback returned by the program after each guess until the player runs out of attempts or gets the correct answer.
 
+6. If the player guesses the correct number, they win, or if they run out of attempts, they lose
 
 ## Features
 - Player will select the difficulty of the game when the game starts
