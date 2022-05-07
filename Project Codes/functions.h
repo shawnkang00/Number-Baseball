@@ -27,7 +27,7 @@ void tail_insert(History *&head, History *&tail, string input, string feedback);
 
 void delete_head(History *&head);
 
-void delete_list();
+void delete_list(History *&head);
 
 bool isNumber(string n);
 

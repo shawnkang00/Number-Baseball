@@ -42,7 +42,7 @@ void delete_list()
 {
 	int size = games.size();
 	for(int i = 0; i < size; i++){
-		History *tmp = games[i].history;	
+		History *tmp = games[i]history;	
 		while (tmp != NULL ){
         	delete_head(tmp);
     	}
@@ -149,7 +149,7 @@ string setDifficulty() {
 	return difficulty;
 }
 
-// This function checks whether the player's guess is a valid guess
+// This function checks whether the player's guess is a valid guess and changes the input when a valid input is given by the user
 // Valid guess means the number of digits are same with the answer and all digits in the guess must be different
 // Input: Player's guess and the difficulty of the game
 // Output: Print out a statement telling whether it's a valid guess or not
