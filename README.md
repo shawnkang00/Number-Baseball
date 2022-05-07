@@ -12,17 +12,17 @@
 ## Project Abstract (Introduction)
 Wordle is a very popular game these days and it has gone viral on social media. Wordle is a game guessing a five-letter word in six attempts. Each time you make a guess, a feedback (a hint) will be given with colors green, yellow, or gray.
 
-Similarly, there is a game in Korea that is similar to Wordle which was very popular among high school students a few years ago, beacuse all you need to play this game is a pen and a paper. This game is called Number Baseball, instead of guessing a word like in Wordle, Number Baseball is a game guessing a number (usually with 3 or 4 digits). Each time a player makes a guess, a feedback will be given with concepts in baseball (Strike, Ball, and Out).
+Similarly, there is a game in Korea that is similar to Wordle which was very popular a few years ago, because all you need to play this game is a pen and a paper. This game is called Number Baseball. Instead of guessing a word like in Wordle, Number Baseball is a game guessing a number (usually with 3 or 4 digits). Each time a player makes a guess, a feedback will be given with concepts in baseball (Strike, Ball, and Out).
 
 
 ## Game Rules
 1. When the game starts, the player can choose to play the Normal Mode or the Hard Mode
     - In Normal Mode: Player have to guess a 3-digit number within 6 attempts
     - In Hard Mode: Player have to guess a 4-digit number within 8 attempts
-    - For the generated number, ALL the digits are different, overlapping digits are not allowed (i.e. Numbers like 111 or 929 is not allowed).
-    - For the generated number, ALL the digits are consists of random integer from 0 ~ 9 (i.e. Number can start with 0).
 
-2. The player attempts to guess the number by inputting the number with the corresponding number of digits set by the difficulty.
+2. The answer which the player has to guess obeys the following rules
+	- There are no duplicate digits in the answer, all the digits in the answer must be unique. (i.e. Numbers like 111 or 929 is not allowed)
+	- All digits in the answer can be numbers in between 0~9 (i.e. Number can start with 0, like 025).
 
 3. The program then returns feedback based on the guess. 
     - If a number in the player's guess exists in the answer and is in the correct place (correct digit), it is a “STRIKE”.
