@@ -48,5 +48,8 @@ int main()
 		}
 	}	
 	cout << "Thank you for playing!" << endl;
+
+	delete_list();
+
 	return 0;
 }

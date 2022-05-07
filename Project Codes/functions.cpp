@@ -27,6 +27,28 @@ void tail_insert(History *&head, History *&tail, string input, string feedback)
 	}
 }
 
+// This function is to delete the head of a linked list
+void delete_head(History *&head)
+{
+	if (head != NULL){
+        History * tmp = head;
+        head = head->next;
+        delete tmp;
+    }
+}
+
+// This function is to delete all linked lists in the vector game
+void delete_list()
+{
+	int size = games.size();
+	for(int i = 0; i < size; i++){
+		History *tmp = games[i].history;	
+		while (tmp != NULL ){
+        	delete_head(tmp);
+    	}
+	}
+}
+
 // This function is to check if string is a number
 // Input: string
 // Output: True if all characters in a string is a number, false if else
