@@ -31,10 +31,10 @@ void tail_insert(History *&head, History *&tail, string input, string feedback)
 void delete_head(History *&head)
 {
 	if (head != NULL){
-        History * tmp = head;
-        head = head->next;
-        delete tmp;
-    }
+		History * tmp = head;
+		head = head->next;
+		delete tmp;
+	}
 }
 
 // This function is to delete all linked lists in the vector game
