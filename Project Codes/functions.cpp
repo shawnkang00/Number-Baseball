@@ -44,8 +44,8 @@ void delete_list()
 	for(int i = 0; i < size; i++){
 		History *tmp = games[i].history;	
 		while (tmp != NULL ){
-        	delete_head(tmp);
-    	}
+        		delete_head(tmp);
+    		}
 	}
 }
 
