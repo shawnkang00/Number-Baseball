@@ -68,7 +68,3 @@ Similarly, there is a game in Korea that is similar to Wordle which was very pop
 
 ## Demonstration Video
 Google Drive Link: https://drive.google.com/file/d/1ClvsoadIUI3H5QZ3zCupZb-MjXZqk517/view?usp=sharing
-
-## Sample Test Cases
-- `input1.txt`: Sample input file for Normal Difficulty
-- `input2.txt`: Sample input file for Hard Difficulty
