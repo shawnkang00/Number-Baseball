@@ -66,5 +66,9 @@ Similarly, there is a game in Korea that is similar to Wordle which was very pop
 ### Program codes in multiple files:
 - Main file, file for functions used in the game, file for the setting of the game
 
+### Testing the code
+- We tested our program both in academy 11 and academy 21 server via X2Go Client and via SSH
+- The program was able to be successfully compiled in both servers
+
 ## Demonstration Video
 Google Drive Link: https://drive.google.com/file/d/1ClvsoadIUI3H5QZ3zCupZb-MjXZqk517/view?usp=sharing
