@@ -25,6 +25,10 @@ extern vector<Game> games;
 
 void tail_insert(History *&head, History *&tail, string input, string feedback);
 
+void delete_head(History *&head);
+
+void delete_list();
+
 bool isNumber(string n);
 
 bool isUnique(string input, int difficulty);
