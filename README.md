@@ -1,9 +1,8 @@
-# ENGG1340 / Course Project (2021-22 Second Semester)
 ## Project Outline
 ### Topic:
 - Number Baseball
-### Group No.:
-- Group 9
+### Project Type:
+- Game
 ### Group members:
 1. Jang Jaeho
 2. Kang Hyunwoo
