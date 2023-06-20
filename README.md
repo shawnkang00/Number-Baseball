@@ -5,8 +5,8 @@
 ### Group No.:
 - Group 9
 ### Group members:
-1. Jang Jaeho (UID: 3035855492)
-2. Kang Hyunwoo (UID: 3035552624)
+1. Jang Jaeho
+2. Kang Hyunwoo
 
 
 ## Project Abstract (Introduction)
